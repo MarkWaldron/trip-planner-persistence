@@ -19,7 +19,6 @@ $(function () {
     var $placeLists = $('.list-group');
     var $dayTitle = $('#day-title');
     var $addPlaceButton = $('.add-place-button');
-
     var createItineraryItem = function (placeName) {
 
         var $item = $('<li></li>');
@@ -131,7 +130,6 @@ $(function () {
     };
 
     $addPlaceButton.on('click', function () {
-
         var $this = $(this);
         var sectionName = $this.parent().attr('id').split('-')[0];
         var $listToAppendTo = $('#' + sectionName + '-list').find('ul');
@@ -140,6 +138,17 @@ $(function () {
 
         var createdMapMarker = drawLocation(map, placeObj.place[0].location, {
             icon: placeMapIcons[sectionName]
+        });
+
+        $.ajax({
+          method: 'PUT',
+          url: '/api/days/' + currentDay + '/' + sectionName + '/' + placeName,
+          success: function (day) {
+              console.log('stuff');
+          },
+          error: function (errorObj) {
+              console.log('other stuff');
+          }
         });
 
         days[currentDay - 1].push({place: placeObj, marker: createdMapMarker, section: sectionName});
@@ -186,4 +195,3 @@ $(function () {
     });
 
 });
-

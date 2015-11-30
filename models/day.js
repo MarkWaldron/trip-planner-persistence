@@ -4,10 +4,10 @@ var ActivitySchema = require('./activity').schema;
 var RestaurantSchema = require('./restaurant').schema
 
 var DaySchema = new mongoose.Schema({
-  numer: Number,
+  number: Number,
   hotel: {type: mongoose.Schema.Types.ObjectId, ref: "Hotel"},
-  restaurants: {type: mongoose.Schema.Types.ObjectId, ref: "Restaurant"},
-  activities: {type: mongoose.Schema.Types.ObjectId, ref: "Activity"}
+  restaurants: [{type: mongoose.Schema.Types.ObjectId, ref: "Restaurant"}],
+  activities: [{type: mongoose.Schema.Types.ObjectId, ref: "Activity"}]
   });
 
 module.exports = mongoose.model('Day', DaySchema);

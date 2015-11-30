@@ -21,7 +21,4 @@ router.get('/', function(req, res) {
     })
 })
 
-// router.use('/api', days);
-
-
 module.exports = router;

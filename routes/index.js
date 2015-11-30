@@ -5,6 +5,7 @@ var Hotel = models.Hotel;
 var Restaurant = models.Restaurant;
 var Activity = models.Activity;
 var Promise = require('bluebird');
+var days = require(__dirname+'/api/days.js');
 
 router.get('/', function(req, res) {
   Promise.all([
@@ -19,5 +20,8 @@ router.get('/', function(req, res) {
       });
     })
 })
+
+// router.use('/api', days);
+
 
 module.exports = router;

@@ -7,7 +7,7 @@ var Activity = models.Activity;
 var Restaurant = models.Restaurant;
 
 router.param("id", function (req, res, next, id){
-  Day.find({number: id}).then(function(day){
+  Day.findOne({number: id}).then(function(day){
     if(day.length == 0){
       Day.create({
         number: id,
@@ -22,7 +22,7 @@ router.param("id", function (req, res, next, id){
         console.log(err);
       })
     } else {
-      req.day = day[0];
+      req.day = day;
     }
   });
   next();
@@ -31,6 +31,7 @@ router.param("id", function (req, res, next, id){
 
 router.get('/days',function(req, res, next){
   // return all days;
+
 });
 
 router.get('/days/:id', function(req, res, next){
